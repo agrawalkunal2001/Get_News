@@ -5,8 +5,8 @@ import 'package:webview_flutter/platform_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ArticleView extends StatefulWidget {
-  final String newsURL;
-  ArticleView({required this.newsURL});
+  final String postUrl;
+  ArticleView({required this.postUrl});
 
   @override
   _ArticleViewState createState() => _ArticleViewState();
@@ -48,7 +48,7 @@ class _ArticleViewState extends State<ArticleView> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: WebView(
-          initialUrl: widget.newsURL,
+          initialUrl: widget.postUrl,
           onWebViewCreated: ((WebViewController webViewController) {
             _completer.complete(webViewController);
           }),

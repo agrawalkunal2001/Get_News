@@ -6,6 +6,7 @@ import 'package:get_news/helper/news.dart';
 import 'package:get_news/models/article_model.dart';
 import 'package:get_news/models/category_model.dart';
 import 'package:get_news/views/article_view.dart';
+import 'package:get_news/views/category_news.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -92,10 +93,11 @@ class _HomeState extends State<Home> {
                         itemCount: articles.length,
                         itemBuilder: (BuildContext context, int index) {
                           return NewsTile(
-                            imageURL: articles[index].urlToImage,
-                            title: articles[index].title,
-                            description: articles[index].description,
-                            url: articles[index].url,
+                            urlToImage: articles[index].urlToImage ?? "",
+                            title: articles[index].title ?? "",
+                            description: articles[index].description ?? "",
+                            postUrl: articles[index].articleUrl ?? "",
+                            content: articles[index].content ?? "",
                           );
                         },
                       ),
@@ -116,7 +118,14 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  CategoryNews(category: categoryName.toString().toLowerCase()),
+            ));
+      },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 8),
         child: Stack(
@@ -155,13 +164,14 @@ class CategoryTile extends StatelessWidget {
 }
 
 class NewsTile extends StatelessWidget {
-  final String imageURL, title, description, url;
+  final String urlToImage, title, description, postUrl, content;
 
   NewsTile(
-      {required this.imageURL,
+      {required this.urlToImage,
       required this.title,
       required this.description,
-      required this.url});
+      required this.postUrl,
+      required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -171,18 +181,24 @@ class NewsTile extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ArticleView(
-              newsURL: '',
+              postUrl: 'postUrl',
             ),
           ),
         );
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 16),
+        width: MediaQuery.of(context).size.width,
         child: Column(
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              child: Image.network(imageURL),
+              child: Image.network(
+                urlToImage,
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
+              ),
             ),
             SizedBox(
               height: 8,

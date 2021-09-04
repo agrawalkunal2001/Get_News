@@ -8,7 +8,7 @@ class News {
 
   Future<void> getNews() async {
     final String url =
-        "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=3e181924374b4955b4018130d947707b";
+        "https://newsapi.org/v2/top-headlines?country=in&apiKey=3e181924374b4955b4018130d947707b";
 
     var response = await http.get(Uri.parse(url)); // Data from http request
 
@@ -24,8 +24,9 @@ class News {
             description: element['description'],
             urlToImage: element['urlToImage'],
             content: element['content'],
+            articleUrl: element['url'],
+            publishedAt: DateTime.parse(element['publishedAt']),
           );
-
           news.add(articleModel);
           print(news);
         }
@@ -34,12 +35,12 @@ class News {
   }
 }
 
-class CategoryNews {
+class CategoryNewsClass {
   List<ArticleModel> news = [];
 
   Future<void> getNews(String category) async {
     final String url =
-        "https://newsapi.org/v2/top-headlines?category=$category&country=in&category=business&apiKey=3e181924374b4955b4018130d947707b";
+        "https://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=3e181924374b4955b4018130d947707b";
 
     var response = await http.get(Uri.parse(url)); // Data from http request
 
@@ -55,6 +56,8 @@ class CategoryNews {
             description: element['description'],
             urlToImage: element['urlToImage'],
             content: element['content'],
+            publishedAt: DateTime.parse(element['publishedAt']),
+            articleUrl: element["url"],
           );
 
           news.add(articleModel);
