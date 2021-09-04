@@ -1,16 +1,8 @@
-# get_news
+# Get News
 
-A new Flutter application.
+A flutter app which displays the latest news across various categories.
 
-## Getting Started
+It uses a 3rd party news API and displays the image, title and description of a news in a scrollable view on the main screen. Each news can be selected to read more which opens up in a web view.
 
-This project is a starting point for a Flutter application.
+## Home screen of the app =>
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
