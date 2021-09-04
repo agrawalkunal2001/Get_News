@@ -44,8 +44,10 @@ class _HomeState extends State<Home> {
         child: Column(
           children: <Widget>[
             Container(
+              height: 70.0,
               child: ListView.builder(
                 itemCount: categories.length,
+                scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return CategoryTile(
