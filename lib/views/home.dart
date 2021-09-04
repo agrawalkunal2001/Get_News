@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_news/helper/data.dart';
@@ -64,10 +65,10 @@ class _HomeState extends State<Home> {
           // Categories
           : SingleChildScrollView(
               child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
                       height: 100.0,
                       child: ListView.builder(
                         itemCount: categories.length,
@@ -83,6 +84,7 @@ class _HomeState extends State<Home> {
                     ),
                     // News
                     Container(
+                      padding: EdgeInsets.only(top: 16),
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: articles.length,
@@ -118,8 +120,8 @@ class CategoryTile extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              child: Image.network(
-                imageURL,
+              child: CachedNetworkImage(
+                imageUrl: imageURL,
                 width: 150.0,
                 height: 90.0,
                 fit: BoxFit.cover,
@@ -161,8 +163,19 @@ class NewsTile extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.network(imageURL),
-          Text(title),
-          Text(description),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 17,
+              color: Colors.black87,
+            ),
+          ),
+          Text(
+            description,
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
         ],
       ),
     );
