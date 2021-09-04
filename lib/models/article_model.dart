@@ -1,9 +1,9 @@
 class ArticleModel {
-  String title = "";
-  String author = "";
-  String description = "";
-  String urlToImage = "";
-  String content = "";
+  String title;
+  String author;
+  String description;
+  String urlToImage;
+  String content;
 
   ArticleModel(
       {required this.title,

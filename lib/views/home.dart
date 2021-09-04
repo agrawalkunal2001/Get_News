@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
     getArticle();
   }
 
-  getArticle() async {
+  Future getArticle() async {
     News newsClass = News();
     await newsClass.getNews();
     articles = newsClass.news;
@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
                         itemCount: categories.length,
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
-                        itemBuilder: (context, index) {
+                        itemBuilder: (BuildContext context, int index) {
                           return CategoryTile(
                             imageURL: categories[index].imageURL,
                             categoryName: categories[index].categoryName,
@@ -87,8 +87,9 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.only(top: 16),
                       child: ListView.builder(
                         shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
                         itemCount: articles.length,
-                        itemBuilder: (context, index) {
+                        itemBuilder: (BuildContext context, int index) {
                           return NewsTile(
                             imageURL: articles[index].urlToImage,
                             title: articles[index].title,
@@ -160,20 +161,31 @@ class NewsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 16),
       child: Column(
         children: <Widget>[
-          Image.network(imageURL),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Image.network(imageURL),
+          ),
+          SizedBox(
+            height: 8,
+          ),
           Text(
             title,
             style: TextStyle(
-              fontSize: 17,
+              fontSize: 18,
               color: Colors.black87,
+              fontWeight: FontWeight.w500,
             ),
+          ),
+          SizedBox(
+            height: 8,
           ),
           Text(
             description,
             style: TextStyle(
-              color: Colors.grey,
+              color: Colors.black54,
             ),
           ),
         ],
