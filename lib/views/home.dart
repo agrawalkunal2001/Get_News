@@ -44,7 +44,8 @@ class _HomeState extends State<Home> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 70.0,
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              height: 100.0,
               child: ListView.builder(
                 itemCount: categories.length,
                 scrollDirection: Axis.horizontal,
@@ -71,15 +72,40 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: <Widget>[
-          Image.network(
-            imageURL,
-            width: 120.0,
-            height: 60.0,
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 8),
+        child: Stack(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image.network(
+                imageURL,
+                width: 150.0,
+                height: 90.0,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: 150.0,
+              height: 90.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: Colors.black26,
+              ),
+              child: Text(
+                categoryName,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
