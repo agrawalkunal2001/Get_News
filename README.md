@@ -6,3 +6,5 @@ It uses a 3rd party news API and displays the image, title and description of a 
 
 ## Home screen of the app =>
 
+![81510826-7fccd680-9332-11ea-9e67-ad6268aadf35](https://user-images.githubusercontent.com/77429521/132114892-70c09a3d-a4b9-4139-a96d-3ea37f7b7071.png)
+
